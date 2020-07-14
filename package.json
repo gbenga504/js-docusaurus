@@ -1,7 +1,7 @@
 {
 	"name": "js-docusaurus",
 	"displayName": "js-docusaurus",
-	"description": "Opinionated comment analyzer for Javascript and Typescript projects ",
+	"description": "Opinionated comment analyzer for Javascript and Typescript projects",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.47.0"
