@@ -7,10 +7,14 @@
 		"vscode": "^1.47.0"
 	},
 	"categories": [
+		"Programming Languages",
+		"Language Packs",
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:js-docusaurus.helloWorld"
+		"onLanguage:javascript",
+		"onLanguage:typescript",
+		"onCommand:js-docusaurus.helloWorld"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
