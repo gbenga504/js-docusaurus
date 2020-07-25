@@ -7,6 +7,8 @@ import {
     languages,
     Diagnostic,
     Range,
+    window,
+    TextEditor
 } from 'vscode';
 import { getCommentNameRegex, getFunctionNameRegex, CommentLineRegex } from './utils';
 
@@ -22,9 +24,12 @@ export default class LintService implements Disposable {
             }
         });
 
-        const fileOpenWatcher = workspace.onDidOpenTextDocument((document: TextDocument) => {
-            if (document.languageId === 'typescript' || document.languageId === 'javascript') {
-                this.checkFileDiagnostics(document);
+        const fileOpenWatcher = window.onDidChangeActiveTextEditor((textEditor: TextEditor | undefined) => {
+            if (textEditor) {
+                let document: TextDocument = textEditor.document;
+                if (document.languageId === 'typescript' || document.languageId === 'javascript') {
+                    this.checkFileDiagnostics(document);
+                }
             }
         });
 
