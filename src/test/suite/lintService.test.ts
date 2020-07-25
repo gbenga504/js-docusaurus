@@ -28,7 +28,7 @@ export async function lintDocument(workspaceFolderName: string, testFile: string
   await vscode.window.showTextDocument(document);
 
   console.time(testFile);
-  lintService.checkFileDiagnotics(document);
+  lintService.checkFileDiagnostics(document);
   console.timeEnd(testFile);
 
   return lintService.diagoniticsCollection.get(document.uri) || [];
