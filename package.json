@@ -1,11 +1,35 @@
 {
 	"name": "js-docusaurus",
-	"displayName": "js-docusaurus",
-	"description": "Opinionated comment analyzer for Javascript and Typescript projects",
-	"version": "0.0.1",
+	"displayName": "js-docusaurus - comment linter",
+	"description": "Opinionated comment linter for Javascript and Typescript projects",
+	"version": "0.1.0",
+	"publisher": "gbenga504",
+	"author": "Anifowoshe Gbenga David <@gbenga504>",
 	"engines": {
-		"vscode": "^1.47.0"
+		"vscode": "^1.41.0"
 	},
+	"galleryBanner": {
+		"color": "#ffe04b",
+		"theme": "light"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gbenga504/js-docusaurus.git"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/gbenga504/js-docusaurus/issues"
+	},
+	"keywords": [
+		"linter",
+		"javascript",
+		"typescript",
+		"js",
+		"ts",
+		"comment",
+		"docusaurus",
+		"analyzer"
+	],
 	"categories": [
 		"Programming Languages",
 		"Language Packs",
