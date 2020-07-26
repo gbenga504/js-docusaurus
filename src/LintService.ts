@@ -12,6 +12,8 @@ import {
 } from 'vscode';
 import { getCommentNameRegex, getFunctionNameRegex, CommentLineRegex } from './utils';
 
+type ErrorType = "NOT_DOCUMENTED" | "IMPROPER_COMMENT";
+
 export default class LintService implements Disposable {
     private diagnosticCollection: DiagnosticCollection = languages.createDiagnosticCollection(
         'javascript',
@@ -71,15 +73,15 @@ export default class LintService implements Disposable {
         if (isLineACommentRegex.test(commentAtLine) === false) {
             //return a diagostic saying that the function has to be commented and set current line to function declaration
             currentLine = currentLine === 0 ? 0 : currentLine + 1;
-            return new Diagnostic(
+            return this.getDiagnostic(
                 new Range(
                     functionLineNumber,
                     0,
                     functionLineNumber,
                     document.lineAt(currentLine).text.length,
                 ),
-                `exported function ${functionName} should have comment or be unexported`,
-                DiagnosticSeverity.Warning,
+                functionName,
+                "NOT_DOCUMENTED",
             );
         } else {
             //Find the first comment line and grab the comment name
@@ -92,20 +94,29 @@ export default class LintService implements Disposable {
                 commentAtLine = document.lineAt(currentLine).text;
             }
             if (commentNameRegex.test(commentAtLine) === false) {
-
-                return new Diagnostic(
+                return this.getDiagnostic(
                     new Range(
                         currentLine,
                         0,
                         functionLineNumber - 1,
                         document.lineAt(functionLineNumber - 1).text.length,
                     ),
-                    `comment on exported function ${functionName} should be of the form "${functionName} ..."`,
-                    DiagnosticSeverity.Warning,
+                    functionName,
+                    "IMPROPER_COMMENT"
                 );
             }
         }
         return null;
+    }
+
+    // getDiagnostic returns the diagnostics
+    private getDiagnostic(range: Range, functionName: string, type: ErrorType): Diagnostic {
+        let message: string = type === "NOT_DOCUMENTED" ? `exported function ${functionName} should have comment or be unexported` : `comment on exported function ${functionName} should be of the form "${functionName} ..."`;
+        return new Diagnostic(
+            range,
+            message,
+            DiagnosticSeverity.Warning,
+        );
     }
 
     public get diagoniticsCollection(): DiagnosticCollection {
