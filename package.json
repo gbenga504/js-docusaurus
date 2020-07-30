@@ -5,6 +5,7 @@
 	"version": "0.1.0",
 	"publisher": "gbenga504",
 	"author": "Anifowoshe Gbenga David <@gbenga504>",
+	"icon": "images/logo.png",
 	"engines": {
 		"vscode": "^1.41.0"
 	},
