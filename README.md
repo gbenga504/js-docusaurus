@@ -27,7 +27,7 @@ Install through VS Code extensions. Search for `js-docusaurus - comment linter`
 
 ### Comment linter
 
-<p><img src="./images/feature.gif" alt="feature gif"></p>
+<p><img src="https://github.com/gbenga504/js-docusaurus/tree/master/images/feature.gif" alt="feature gif"></p>
 
 ## Known Issues
 

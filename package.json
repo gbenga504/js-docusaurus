@@ -9,10 +9,6 @@
 	"engines": {
 		"vscode": "^1.41.0"
 	},
-	"galleryBanner": {
-		"color": "#ffe04b",
-		"theme": "light"
-	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/gbenga504/js-docusaurus.git"
