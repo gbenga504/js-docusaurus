@@ -15,7 +15,7 @@ A proper documented application brings joy and increases the confidence of a tea
 
 - Most code bases are either not properly documented or not documented at all.
 - Engineers frequently complain of the stress it takes to maintain a good docs.
-- Code documentation for js apps have not been properly subdued to a certain phycology.
+- Code documentation for js apps have not been properly subdued to a certain psychology.
 
 This extension is an attempt to ease the pain of documenting apps via an opinionated approach.
 
@@ -27,7 +27,7 @@ Install through VS Code extensions. Search for `js-docusaurus - comment linter`
 
 ### Comment linter
 
-<p><img src="https://github.com/gbenga504/js-docusaurus/tree/master/images/feature.gif" alt="feature gif"></p>
+<p><img src="https://github.com/gbenga504/js-docusaurus/raw/master/images/feature.gif" alt="feature gif" /></p>
 
 ## Known Issues
 
@@ -43,6 +43,6 @@ Initial release
 
 See [CHANGELOG](CHANGELOG.md) for more information.
 
-## Changelog
+## Contributing
 
 See [CONTRIBUTING](CONTRIBUTING.md) for more information.
