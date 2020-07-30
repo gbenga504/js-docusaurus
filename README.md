@@ -1,6 +1,6 @@
 # js-docusaurus - Comment Linter for Visual Studio Code
 
-Js-docusaurus is an opinionated comment linter for Javascript and Typescript projects. It enforces a consistent style for providing inline documentation for your code.
+Js-docusaurus is an opinionated comment linter for Javascript and Typescript projects. It enforces a consistent style for providing inline documentation for your code. **This extension reminds you to document the most areas of your codebase**.
 
 <p align="center">
   <em>
@@ -11,13 +11,12 @@ Js-docusaurus is an opinionated comment linter for Javascript and Typescript pro
 
 ## Philosophy
 
-A proper documented application brings joy and increases the confidence of a team however code documentation still remains one of the toughest issues to tackle today.
+A proper documented application brings joy and increases the confidence of a team. However code documentation still remains one of the toughest issues to tackle today.
 
 - Most code bases are either not properly documented or not documented at all.
-- Engineers frequently complain of the stress it takes to maintain a good docs.
-- Code documentation for js apps have not been properly subdued to a certain psychology.
+- Engineers frequently complain of the stress involved in maintaining a good docs.
 
-This extension is an attempt to ease the pain of documenting apps via an opinionated approach.
+This extension is an attempt to ease the pain of documenting apps. It reminds you to document areas of your code that are relied on e.g documenting all exported functions. Basically, this means you don't need to document your entire codebase but only focus on documenting the most important areas.
 
 ## Installation
 
