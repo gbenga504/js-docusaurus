@@ -130,5 +130,21 @@ suite('Test Linter', function () {
       };
       assert.deepEqual(actual, expected);
     });
+
+    // test('exported const Status must have a comment', async () => {
+    //   let actual = {
+    //     startLine: diagnostics[3]?.range?.start?.line,
+    //     startCharacter: diagnostics[3]?.range?.start?.character,
+    //     endLine: diagnostics[3]?.range?.end?.line,
+    //     endCharacter: diagnostics[3]?.range?.end?.character,
+    //   };
+    //   let expected = {
+    //     startLine: 21,
+    //     startCharacter: 0,
+    //     endLine: 21,
+    //     endCharacter: 24,
+    //   };
+    //   assert.deepEqual(actual, expected);
+    // })
   });
 });
