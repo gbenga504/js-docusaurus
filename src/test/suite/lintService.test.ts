@@ -81,8 +81,8 @@ suite('Test Linter', function () {
   });
 
   suite('lint document', function () {
-    test('it produces 3 diagnostics', async () => {
-      assert.equal(diagnostics.length, 3);
+    test('it produces 5 diagnostics', async () => {
+      assert.equal(diagnostics.length, 5);
     });
 
     test(`it produces "exported function fn3 should have comment or be unexported" as message for second diagnotics`, async () => {
@@ -123,28 +123,28 @@ suite('Test Linter', function () {
         endCharacter: diagnostics[2].range.end.character,
       };
       let expected = {
-        startLine: 15,
+        startLine: 13,
         startCharacter: 0,
-        endLine: 16,
+        endLine: 14,
         endCharacter: 30,
       };
       assert.deepEqual(actual, expected);
     });
 
-    // test('exported const Status must have a comment', async () => {
-    //   let actual = {
-    //     startLine: diagnostics[3]?.range?.start?.line,
-    //     startCharacter: diagnostics[3]?.range?.start?.character,
-    //     endLine: diagnostics[3]?.range?.end?.line,
-    //     endCharacter: diagnostics[3]?.range?.end?.character,
-    //   };
-    //   let expected = {
-    //     startLine: 21,
-    //     startCharacter: 0,
-    //     endLine: 21,
-    //     endCharacter: 24,
-    //   };
-    //   assert.deepEqual(actual, expected);
-    // })
+    test('exported const Status must have a comment', async () => {
+      let actual = {
+        startLine: diagnostics[3]?.range?.start?.line,
+        startCharacter: diagnostics[3]?.range?.start?.character,
+        endLine: diagnostics[3]?.range?.end?.line,
+        endCharacter: diagnostics[3]?.range?.end?.character,
+      };
+      let expected = {
+        startLine: 23,
+        startCharacter: 0,
+        endLine: 23,
+        endCharacter: 23,
+      };
+      assert.deepEqual(actual, expected);
+    })
   });
 });

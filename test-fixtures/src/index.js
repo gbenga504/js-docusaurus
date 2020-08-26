@@ -21,19 +21,14 @@ const functionName1 = `export function fn1() {}`;
 
 const functionName2 = `export const fn3 = () => {}`;
 
-// export const Status = {
-//     approved: `approved`,
-//     declined: `declined`
-// }
+export const Status = {
+  approved: `approved`,
+  declined: `declined`,
+};
 
-// export default {
-//     approved: `approved`,
-//     declined: `declined`
-// }
-
-// // This object exports the 3 state of the app
-// export let State = {
-//     pending: 0,
-//     inprogress: 1,
-//     approved: 2
-// }
+// This object exports the 3 state of the app
+export let State = {
+  pending: 0,
+  inprogress: 1,
+  approved: 2,
+};
