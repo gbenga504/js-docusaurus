@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import * as path from 'path';
-import { getFunctionNameRegex, CommentLineRegex, getCommentNameRegex } from '../../utils';
+import { getIdentifierNameRegex, CommentLineRegex, getCommentNameRegex } from '../../utils';
 import LintService from '../../LintService';
 
 /**
@@ -43,23 +43,23 @@ suite('Test Linter', function () {
 
   suite('function name', () => {
     test('is fn1', () => {
-      let functionName = new RegExp(getFunctionNameRegex).exec(`export function fn1(){}`);
-      assert.equal(functionName && functionName[0], 'fn1');
+      let identifierName = new RegExp(getIdentifierNameRegex).exec(`export function fn1(){}`);
+      assert.equal(identifierName && identifierName[0], 'fn1');
     });
 
     test('is fn2', () => {
-      let functionName = new RegExp(getFunctionNameRegex).exec(`export default function fn2(){}`);
-      assert.equal(functionName && functionName[0], 'fn2');
+      let identifierName = new RegExp(getIdentifierNameRegex).exec(`export default function fn2(){}`);
+      assert.equal(identifierName && identifierName[0], 'fn2');
     });
 
     test('is fn3', () => {
-      let functionName = new RegExp(getFunctionNameRegex).exec(`export const fn3 = () => {}`);
-      assert.equal(functionName && functionName[0], 'fn3');
+      let identifierName = new RegExp(getIdentifierNameRegex).exec(`export const fn3 = () => {}`);
+      assert.equal(identifierName && identifierName[0], 'fn3');
     });
 
     test('is fn4', () => {
-      let functionName = new RegExp(getFunctionNameRegex).exec(`export default fn4 = () => {}`);
-      assert.equal(functionName && functionName[0], 'fn4');
+      let identifierName = new RegExp(getIdentifierNameRegex).exec(`export default fn4 = () => {}`);
+      assert.equal(identifierName && identifierName[0], 'fn4');
     });
   });
 
@@ -85,17 +85,17 @@ suite('Test Linter', function () {
       assert.equal(diagnostics.length, 5);
     });
 
-    test(`it produces "exported function fn3 should have comment or be unexported" as message for second diagnotics`, async () => {
+    test(`it produces "exported identifier fn3 should have comment or be unexported" as message for second diagnotics`, async () => {
       assert.equal(
         diagnostics[1].message,
-        `exported function fn3 should have comment or be unexported`,
+        `exported identifier fn3 should have comment or be unexported`,
       );
     });
 
-    test(`it produces "comment on exported function fn4 should be of the form "fn4 ..."" as message for third diagnotics`, async () => {
+    test(`it produces "comment on exported identifier fn4 should be of the form "fn4 ..."" as message for third diagnotics`, async () => {
       assert.equal(
         diagnostics[2].message,
-        `comment on exported function fn4 should be of the form "fn4 ..."`,
+        `comment on exported identifier fn4 should be of the form "fn4 ..."`,
       );
     });
 

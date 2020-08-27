@@ -1,4 +1,4 @@
-export const getFunctionNameRegex: string =
+export const getIdentifierNameRegex: string =
   '(?<![`\'"].*)((?<=export\\s+(default)?\\s*function\\s+)[\\w_$]+(?=\\(.*)|(?<=export\\s+.+)[\\w_$]+(?=\\s*=\\s*(\\{|\\(.*)))';
 
 export const CommentLineRegex: string = '^s*//.*';
