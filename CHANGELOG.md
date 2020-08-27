@@ -12,3 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Whitelist identifiers placed in strings
 - Added support for linting exported javascript variables
+
+## [0.2.1]
+
+- Fix: Update README.md
