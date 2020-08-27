@@ -32,12 +32,6 @@ Install through VS Code extensions. Search for `js-docusaurus - comment linter`
 
 This extension is still relatively new therefore there are lots of areas of code documentation that still needs work.
 
-## Release Notes
-
-### 0.1.0
-
-Initial release
-
 ## Changelog
 
 See [CHANGELOG](CHANGELOG.md) for more information.
