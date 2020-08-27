@@ -10,7 +10,7 @@ import {
   window,
   TextEditor,
 } from 'vscode';
-import { getCommentNameRegex, getFunctionNameRegex, CommentLineRegex } from './utils';
+import { getCommentNameRegex, getIdentifierNameRegex, CommentLineRegex } from './utils';
 
 type ErrorType = 'NOT_DOCUMENTED' | 'IMPROPER_COMMENT';
 
@@ -41,13 +41,13 @@ export default class LintService implements Disposable {
   }
 
   // checkFileDiagnostics sets the diagnostics for a document
-  // It runs through each line then tries to match for a function declaration;
-  // it then calls the validateComment function to validate if the function is properly linted based on some predefined rules
+  // It runs through each line then tries to match for an identifier declaration;
+  // it then calls the validateComment method to validate if the identifier is properly linted based on some predefined rules
   public checkFileDiagnostics(document: TextDocument) {
     let diagnotics: Diagnostic[] = [];
     Array.apply(null, Array(document.lineCount)).forEach((value: any, index: number) => {
       let text: string = document.lineAt(index).text;
-      let regex: RegExp = new RegExp(getFunctionNameRegex);
+      let regex: RegExp = new RegExp(getIdentifierNameRegex);
       let match: RegExpExecArray | null = regex.exec(text);
       if (match !== null) {
         let commentDiagnostics: Diagnostic | null = this.validateComment(document, match, index);
@@ -59,35 +59,35 @@ export default class LintService implements Disposable {
     this.diagnosticCollection.set(document.uri, diagnotics);
   }
 
-  // validateComment validates a function declaration against the linter's comment rules
+  // validateComment validates an identifier declaration against the linter's comment rules
   private validateComment(
     document: TextDocument,
     match: RegExpExecArray,
-    functionLineNumber: number,
+    identifierLineNumber: number,
   ): Diagnostic | null {
-    let functionName = match[0];
-    let commentNameRegex: RegExp = new RegExp(getCommentNameRegex(functionName));
+    let identifierName = match[0];
+    let commentNameRegex: RegExp = new RegExp(getCommentNameRegex(identifierName));
     let isLineACommentRegex: RegExp = new RegExp(CommentLineRegex);
-    // change the current line to the line directly above the function declaration or 0 if the function declaration line = 0
-    let currentLine: number = functionLineNumber === 0 ? 0 : functionLineNumber - 1;
+    // change the current line to the line directly above the identifier declaration or 0 if the identifier declaration line = 0
+    let currentLine: number = identifierLineNumber === 0 ? 0 : identifierLineNumber - 1;
     let commentAtLine: string = document.lineAt(currentLine).text;
 
     if (isLineACommentRegex.test(commentAtLine) === false) {
-      //return a diagostic saying that the function has to be commented and set current line to function declaration
+      //return a diagostic saying that the identifier has to be commented
       currentLine = currentLine === 0 ? 0 : currentLine + 1;
       return this.getDiagnostic(
         new Range(
-          functionLineNumber,
+          identifierLineNumber,
           0,
-          functionLineNumber,
+          identifierLineNumber,
           document.lineAt(currentLine).text.length,
         ),
-        functionName,
+        identifierName,
         'NOT_DOCUMENTED',
       );
     } else {
       //Find the first comment line and grab the comment name
-      //return a diagnotic requesting the user to work on the comment if comment name is not equal to function name
+      //return a diagnotic requesting the user to work on the comment if comment name is not equal to identifier name
       while (
         currentLine - 1 >= 0 &&
         isLineACommentRegex.test(document.lineAt(currentLine - 1).text) === true
@@ -100,10 +100,10 @@ export default class LintService implements Disposable {
           new Range(
             currentLine,
             0,
-            functionLineNumber - 1,
-            document.lineAt(functionLineNumber - 1).text.length,
+            identifierLineNumber - 1,
+            document.lineAt(identifierLineNumber - 1).text.length,
           ),
-          functionName,
+          identifierName,
           'IMPROPER_COMMENT',
         );
       }
@@ -112,11 +112,11 @@ export default class LintService implements Disposable {
   }
 
   // getDiagnostic returns the diagnostics
-  private getDiagnostic(range: Range, functionName: string, type: ErrorType): Diagnostic {
+  private getDiagnostic(range: Range, identifierName: string, type: ErrorType): Diagnostic {
     let message: string =
       type === 'NOT_DOCUMENTED'
-        ? `exported function ${functionName} should have comment or be unexported`
-        : `comment on exported function ${functionName} should be of the form "${functionName} ..."`;
+        ? `exported identifier ${identifierName} should have comment or be unexported`
+        : `comment on exported identifier ${identifierName} should be of the form "${identifierName} ..."`;
     return new Diagnostic(range, message, DiagnosticSeverity.Warning);
   }
 
