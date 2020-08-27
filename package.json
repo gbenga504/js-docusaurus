@@ -2,7 +2,7 @@
 	"name": "js-docusaurus",
 	"displayName": "js-docusaurus - comment linter",
 	"description": "Opinionated comment linter for Javascript and Typescript projects",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"publisher": "gbenga504",
 	"author": "Anifowoshe Gbenga David <@gbenga504>",
 	"icon": "images/logo.png",
